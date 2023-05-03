@@ -30,15 +30,16 @@ jobs:
       - run:
           name: Generate images and commit
           command: |
-            python3 --version
-            python3 generate_images.py
             git remote set-url origin 'https://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@github.com/riolubruh/github-stats.git'
             git remote -v
             git config --global user.name "riolubruh/github-stats"
             git config --global user.email "github-stats[bot]@riolubruh.github.io"
-            git checkout
+            git fetch --all
+            git reset --hard origin/master
             git add .
             # Force the build to succeed, even if no files were changed
+            python3 --version
+            python3 generate_images.py
             git commit -m 'Update generated files' || true
             git push
           environment:
