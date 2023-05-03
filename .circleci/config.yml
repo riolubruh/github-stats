@@ -43,7 +43,6 @@ jobs:
       - run:
           name: Commit to the repo
           command: |
-            git remote add origin git@github.com:riolubruh/github-stats.git
             git remote set-url --add --push origin git@github.com:riolubruh/github-stats.git
             git remote -v
             git config --global user.name "riolubruh/github-stats"
