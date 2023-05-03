@@ -36,7 +36,7 @@ jobs:
             git remote -v
             git config --global user.name "riolubruh/github-stats"
             git config --global user.email "github-stats[bot]@riolubruh.github.io"
-            git config pull.rebase true
+            git config pull.rebase false
             git pull
             git add .
             # Force the build to succeed, even if no files were changed
