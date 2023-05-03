@@ -28,22 +28,11 @@ jobs:
 
       # Generate all statistics images
       - run:
-          name: Generate images
+          name: Generate images and commit
           command: |
             python3 --version
             python3 generate_images.py
-          environment:
-            ACCESS_TOKEN: $ACCESS_TOKEN
-            GITHUB_TOKEN: $GITHUB_TOKEN
-            EXCLUDED: $EXCLUDED
-            EXCLUDED_LANGS: $EXCLUDED_LANGS
-            EXCLUDE_FORKED_REPOS: true
-
-      # Commit all changed files to the repository
-      - run:
-          name: Commit to the repo
-          command: |
-            git remote set-url origin https://$ACCESS_TOKEN@github.com/riolubruh/github-stats.git
+            git remote set-url origin https://github.com/riolubruh/github-stats.git
             git remote -v
             git config --global user.name "riolubruh/github-stats"
             git config --global user.email "github-stats[bot]@riolubruh.github.io"
@@ -57,6 +46,7 @@ jobs:
             EXCLUDED: $EXCLUDED
             EXCLUDED_LANGS: $EXCLUDED_LANGS
             EXCLUDE_FORKED_REPOS: true
+            
 
 # Define the workflow
 workflows:
