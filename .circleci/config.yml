@@ -32,7 +32,8 @@ jobs:
           command: |
             python3 --version
             python3 generate_images.py
-            git remote set-url origin 'https://$ACCESS_TOKEN@github.com/riolubruh/github-stats.git'
+            export funkyurl=https://$ACCESS_TOKEN@github.com/riolubruh/github-stats.git
+            git remote set-url origin $funkyurl
             git remote -v
             git config --global user.name "riolubruh/github-stats"
             git config --global user.email "github-stats[bot]@riolubruh.github.io"
