@@ -63,11 +63,8 @@ workflows:
   version: 2
   build:
     jobs:
-      # Define the name of the job that will be executed
       - build:
-          # Set the filters to run the job on master branch
           filters:
             branches:
               only:
                 - master
-          # Allow running the job manually through the CircleCI UI
