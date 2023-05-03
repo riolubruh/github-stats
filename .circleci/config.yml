@@ -1,0 +1,65 @@
+version: 2.1
+
+# Define the job
+jobs:
+  build:
+    # Set the executor to Ubuntu 20.04
+    machine:
+      image: ubuntu-2004:202111-01
+
+    # Define the steps of the job
+    steps:
+      # Check out the code
+      - checkout
+
+      # Set up Python 3.8
+      - run:
+          name: Set up Python 3.8
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y python3.8 python3-pip python3-setuptools python3-wheel
+            python3 -m pip install --upgrade pip
+
+      # Install dependencies with `pip`
+      - run:
+          name: Install requirements
+          command: |
+            python3 -m pip install -r requirements.txt
+
+      # Generate all statistics images
+      - run:
+          name: Generate images
+          command: |
+            python3 --version
+            python3 generate_images.py
+          environment:
+            ACCESS_TOKEN: $ACCESS_TOKEN
+            GITHUB_TOKEN: $GITHUB_TOKEN
+            EXCLUDED: $EXCLUDED
+            EXCLUDED_LANGS: $EXCLUDED_LANGS
+            EXCLUDE_FORKED_REPOS: true
+
+      # Commit all changed files to the repository
+      - run:
+          name: Commit to the repo
+          command: |
+            git config --global user.name "riolubruh/github-stats"
+            git config --global user.email "github-stats[bot]@riolubruh.github.io"
+            git add .
+            # Force the build to succeed, even if no files were changed
+            git commit -m 'Update generated files' || true
+            git push
+
+# Define the workflow
+workflows:
+  version: 2
+  build:
+    jobs:
+      # Define the name of the job that will be executed
+      - build:
+          # Set the filters to run the job on master branch
+          filters:
+            branches:
+              only:
+                - master
+          # Allow running the job manually through the CircleCI UI
