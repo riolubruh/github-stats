@@ -40,13 +40,6 @@ jobs:
             # Force the build to succeed, even if no files were changed
             git commit -m 'Update generated files' || true
             git push origin master -f
-          environment:
-            ACCESS_TOKEN: ACCESS_TOKEN
-            GITHUB_TOKEN: GITHUB_TOKEN
-            GITHUB_ACTOR: GITHUB_ACTOR
-            EXCLUDED: EXCLUDED
-            EXCLUDED_LANGS: EXCLUDED_LANGS
-            EXCLUDE_FORKED_REPOS: true
             
 
 # Define the workflow
