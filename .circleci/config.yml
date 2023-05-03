@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Commit to the repo
           command: |
-            git remote set-url origin https://${GITHUB_TOKEN}@github.com/riolubruh/github-stats.git
+            git remote set-url origin https://$ACCESS_TOKEN@github.com/riolubruh/github-stats.git
             git remote -v
             git config --global user.name "riolubruh/github-stats"
             git config --global user.email "github-stats[bot]@riolubruh.github.io"
