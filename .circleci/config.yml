@@ -60,8 +60,8 @@ workflows:
                 - master
     triggers:
       - schedule:
-        cron: "0 0 * * *"
-        filters:
-          branches:
-            only:
-            - master
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+              - master
