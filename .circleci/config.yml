@@ -46,6 +46,8 @@ jobs:
             # Force the build to succeed, even if no files were changed
             git commit -m 'Update generated files' || true
             git push origin master -f
+    schedule:
+      - cron: "0 0 * * *"
             
 
 # Define the workflow
