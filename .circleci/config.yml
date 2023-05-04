@@ -45,19 +45,16 @@ jobs:
             git add .
             # Force the build to succeed, even if no files were changed
             git commit -m 'Update generated files' || true
-            git push origin master -f         
+            git push origin master -f
+            
 
 # Define the workflow
 workflows:
   version: 2
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
+  build:
+    jobs:
+      - build:
           filters:
             branches:
               only:
                 - master
-    jobs:
-      - build
-
