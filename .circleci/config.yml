@@ -52,16 +52,11 @@ jobs:
 workflows:
   version: 2
   build:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
     jobs:
       - build:
           filters:
             branches:
               only:
                 - master
+    schedule:
+      - cron: "0 0 * * *"
