@@ -34,7 +34,7 @@ jobs:
             python3 generate_images.py
       - run:
           name: Set url origin
-          command: git remote set-url origin https://$ACCESS_TOKEN@github.com/riolubruh/github-stats.git
+          command: git remote set-url origin https://$ACCESS_TOKEN@github.com/$GITHUB_ACTOR/github-stats.git
       - run:
           name: Commit
           command: |
@@ -52,16 +52,19 @@ jobs:
 workflows:
   version: 2
   build:
-    triggers:
-      - schedule:
-           cron: "0 0 * * *"
-           filters:
-             branches:
-               only:
-                 - master
     jobs:
       - build:
           filters:
             branches:
               only:
                 - master
+  nightly:
+     triggers:
+       - schedule:
+           cron: "0 0 * * *"
+           filters:
+             branches:
+               only:
+                 - master
+     jobs:
+       - build
