@@ -65,7 +65,7 @@ workflows:
     when: << pipeline.parameters.run-schedule >>
     triggers: #use the triggers key to indicate a scheduled build
       - schedule:
-          cron: "0 0 * * *" # use cron syntax to set the schedule
+          cron: "* * * * *" # use cron syntax to set the schedule
           filters:
             branches:
               only:
