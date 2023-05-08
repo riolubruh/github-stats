@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   run-schedule:
     type: boolean
-    default: true
+    default: false
 
 # Define the job
 jobs:
