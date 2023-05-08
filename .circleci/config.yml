@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  run-schedule:
+    type: boolean
+    default: false
+
 # Define the job
 jobs:
   build:
@@ -58,13 +63,11 @@ workflows:
             branches:
               only:
                 - master
-  nightly:
-     triggers:
-       - schedule:
-           cron: "0 0 * * *"
-           filters:
-             branches:
-               only:
-                 - master
-     jobs:
-       - build
+  nightly-build:
+    when: << pipeline.parameters.run-schedule >>
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
