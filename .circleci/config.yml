@@ -3,9 +3,9 @@ version: 2.1
 # Define the job
 jobs:
   build:
-    # Set the executor to Ubuntu 20.04
+    # Set the executor to current Ubuntu 20.04
     machine:
-      image: ubuntu-2004:202111-01
+      image: ubuntu-2004:current
 
     # Define the steps of the job
     steps:
