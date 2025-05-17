@@ -64,3 +64,9 @@ workflows:
             branches:
               only:
                 - master
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master            
