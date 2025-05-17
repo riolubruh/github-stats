@@ -59,7 +59,7 @@ workflows:
   updateDaily:
     triggers:
       schedule:
-        cron: "0 0 * *"
+        cron: "0 0 * * *"
         filters:
             branches:
               only:
