@@ -32,6 +32,8 @@ jobs:
           command: |
             python3 --version
             python3 generate_images.py
+
+      # Commit and push changes
       - run:
           name: Set url origin, commit
           command: |
@@ -44,11 +46,11 @@ jobs:
             # Force the build to succeed, even if no files were changed
             git commit -m 'Update generated files' || true
             git push origin master -f
-            
 
 # Define the workflow
 workflows:
   version: 2
+  # Manual trigger workflow
   build:
     jobs:
       - build:
@@ -56,11 +58,13 @@ workflows:
             branches:
               only:
                 - master
+
+  # Scheduled daily update workflow
   updateDaily:
     triggers:
-      schedule:
-        cron: "0 0 * * *"
-        filters:
+      - schedule:
+          cron: "0 0 * * *"  # Runs at midnight UTC daily
+          filters:
             branches:
               only:
                 - master
@@ -69,4 +73,4 @@ workflows:
           filters:
             branches:
               only:
-                - master            
+                - master
